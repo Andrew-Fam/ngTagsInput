@@ -14,11 +14,8 @@ module.exports = function(config) {
       'test/lib/jquery-1.10.2.min.js',
       'test/lib/angular.js',
       'test/lib/angular-mocks.js',
-      'test/tags-input.spec.js',
-      'test/autocomplete.spec.js',
-      'src/keycodes.js',
-      'src/tags-input.js',
-      'src/autocomplete.js'
+      'test/ng-tags-input.spec.js',
+      'src/ng-tags-input.js'
     ],
 
 

@@ -1,5 +1,4 @@
 {
-    "strict": true,
     "curly": true,
     "eqeqeq": true,
     "immed": true,
@@ -13,14 +12,10 @@
         "module": true,
         "inject": true,
         "jQuery": true,
-        "document": true,
-        "$": true,
         "beforeEach": true,
         "describe": true,
         "it": true,
         "expect": true,
-        "jasmine": true,
-        "spyOn": true,
-        "KEYS": true
+        "spyOn": true
     }
 }
