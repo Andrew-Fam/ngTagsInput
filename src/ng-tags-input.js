@@ -72,7 +72,7 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
                   '      <button type="button" ng-click="remove($index)">{{ options.removeTagSymbol }}</button>' +
                   '    </li>' +
                   '  </ul>' +
-                  '  <input type="text" typeahead="{{options.typeAhead}}" placeholder="{{ options.placeholder }}" size="{{ options.placeholder.length }}" maxlength="{{ options.maxLength }}" tabindex="{{ options.tabindex }}" ng-model="newTag">' +
+                  '  <input type="text" typeahead="{{options.typeAhead}}" typeahead-on-select="tryAdd()" placeholder="{{ options.placeholder }}" size="{{ options.placeholder.length }}" maxlength="{{ options.maxLength }}" tabindex="{{ options.tabindex }}" ng-model="newTag">' +
                   '</div>',
         controller: function($scope, $attrs) {
             loadOptions($scope, $attrs);
