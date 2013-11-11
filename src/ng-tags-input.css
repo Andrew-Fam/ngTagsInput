@@ -85,3 +85,10 @@
 .ngTagsInput input::-ms-clear {
     display: none;
 }
+
+ul.typeahead li {
+    display: block;
+    float: none;
+    background: none;
+    border: none;
+}
