@@ -25,7 +25,7 @@
  *                                             is pressed and the input box is empty.
  */
 
-angular.module('tags-input', []).directive('tagsInput', function($interpolate) {
+angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($interpolate) {
     function loadOptions(scope, attrs) {
         function getStr(name, defaultValue) {
             return attrs[name] ? $interpolate(attrs[name])(scope.$parent) : defaultValue;

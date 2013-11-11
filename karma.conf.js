@@ -14,6 +14,7 @@ module.exports = function(config) {
       'test/lib/jquery-1.10.2.min.js',
       'test/lib/angular.js',
       'test/lib/angular-mocks.js',
+      'test/lib/ui-bootstrap-custom-tpls-0.6.0.min.js',
       'test/ng-tags-input.spec.js',
       'src/ng-tags-input.js'
     ],
