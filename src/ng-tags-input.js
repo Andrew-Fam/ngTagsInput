@@ -53,7 +53,7 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
             addOnEnter: getBool('addOnEnter', true),
             addOnSpace: getBool('addOnSpace', false),
             addOnComma: getBool('addOnComma', true),
-            allowedTagsPattern: new RegExp(getStr('allowedTagsPattern', '^[a-zA-Z0-9\\s/\\\\ ]+$')),
+            allowedTagsPattern: new RegExp(getStr('allowedTagsPattern', '^[a-zA-Z0-9\\s/\.\\\\\/]+$')),
             enableEditingLastTag: getBool('enableEditingLastTag', false),
             displayField: getStr('tagsInputDisplayField', '')
         };
@@ -93,7 +93,7 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
                 var displayField= $scope.options.displayField;
                
                 if(dataField!==''&&displayField!==''){
-
+                   
                     if (tag[displayField].length >= $scope.options.minLength && $scope.options.allowedTagsPattern.test(tag[displayField])) {
 
                         if ($scope.options.replaceSpacesWithDashes) {
