@@ -84,18 +84,15 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
             $scope.data = $scope.data || [];
             $scope.$watch($scope.typeAheadSource, function () {
                 $scope.source = angular.fromJson($scope.typeAheadSource());
-                console.log(angular.fromJson($scope.typeAheadSource()));
+                
             });
             $scope.tryAdd = function() {
                 var changed = false;
                 var tag = $scope.newTag;
                 var dataField= $scope.options.dataField;
                 var displayField= $scope.options.displayField;
-                console.log(dataField);
-
-                console.log(tag[dataField]);
-
-                if(dataField!=''&&displayField!=''){
+               
+                if(dataField!==''&&displayField!==''){
 
                     if (tag[displayField].length >= $scope.options.minLength && $scope.options.allowedTagsPattern.test(tag[displayField])) {
 
@@ -111,10 +108,7 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
                         $scope.newTag = '';
                         changed = true;
                     }
-                    else
-                    {
-                        console.log('sum wrong with minlength and allowed pattern man');
-                    }
+                    
                     
                 }else if (tag.length >= $scope.options.minLength && $scope.options.allowedTagsPattern.test(tag)) {
 
@@ -129,10 +123,7 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
                     $scope.newTag = '';
                     changed = true;
                 }
-                else
-                {
-                    console.log('sum wrong with minlength and allowed pattern man');
-                }
+               
                 return changed;
             };
 
