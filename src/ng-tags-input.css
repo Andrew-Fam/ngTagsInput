@@ -75,7 +75,7 @@
 .ngTagsInput input {
     border: 0px;
     outline: none;
-    margin: 0;
+    margin: 2px;
     padding: 0;
     height: 21px;
     float: left;
