@@ -26,7 +26,7 @@
     list-style-type: none;
 }
 
-.ngTagsInput > li {
+.ngTagsInput > ul > li {
     margin: 2px;
     padding-left: 4px;
     display: inline-block;
@@ -44,7 +44,7 @@
     background: linear-gradient(to bottom,  rgba(240,249,255,1) 0%,rgba(203,235,255,1) 47%,rgba(161,219,255,1) 100%); /* W3C */
 } 
 
-.ngTagsInput > li.selected {
+.ngTagsInput > ul > li.selected {
     background: rgb(254,187,187); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(254,187,187,1) 0%, rgba(254,144,144,1) 45%, rgba(255,92,92,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,187,187,1)), color-stop(45%,rgba(254,144,144,1)), color-stop(100%,rgba(255,92,92,1))); /* Chrome,Safari4+ */
@@ -72,7 +72,7 @@
     color: #ff0000;
 }
 
-.ngTagsInput > input {
+.ngTagsInput input {
     border: 0px;
     outline: none;
     margin: 0;
@@ -82,6 +82,6 @@
     font: 13px Arial, sans-serif;
 }
 
-.ngTagsInput > input::-ms-clear {
+.ngTagsInput input::-ms-clear {
     display: none;
 }
