@@ -171,9 +171,10 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
                     if (e.keyCode === ENTER && scope.options.addOnEnter ||
                         e.keyCode === COMMA && scope.options.addOnComma ||
                         e.keyCode === SPACE && scope.options.addOnSpace) {
-
-                        if (scope.tryAdd()) {
-                            scope.$apply();
+                        if(scope.data === undefined){
+                            if (scope.tryAdd()) {
+                                scope.$apply();
+                            }
                         }
                         e.preventDefault();
                     }
