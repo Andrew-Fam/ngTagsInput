@@ -54,14 +54,16 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
             addOnSpace: getBool('addOnSpace', false),
             addOnComma: getBool('addOnComma', true),
             allowedTagsPattern: new RegExp(getStr('allowedTagsPattern', '^[a-zA-Z0-9\\s/\\\\ ]+$')),
-            enableEditingLastTag: getBool('enableEditingLastTag', false)
+            enableEditingLastTag: getBool('enableEditingLastTag', false),
+            displayField: getStr('tagsInputDisplayField', '')
         };
     }
 
     return {
         restrict: 'A,E',
         scope: { 
-            tags: '=ngModel',
+            tags: '=ngDisplayModel',
+            data: '=ngDataModel',
             typeAheadSource:'&tagsInputSource',    
         },
         replace: false,
@@ -79,7 +81,7 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
 
             $scope.newTag = '';
             $scope.tags = $scope.tags || [];
-            
+            $scope.data = $scope.data || [];
             $scope.$watch($scope.typeAheadSource, function () {
                 $scope.source = angular.fromJson($scope.typeAheadSource());
                 console.log(angular.fromJson($scope.typeAheadSource()));
@@ -87,8 +89,34 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
             $scope.tryAdd = function() {
                 var changed = false;
                 var tag = $scope.newTag;
+                var dataField= $scope.options.dataField;
+                var displayField= $scope.options.displayField;
+                console.log(dataField);
 
-                if (tag.length >= $scope.options.minLength && $scope.options.allowedTagsPattern.test(tag)) {
+                console.log(tag[dataField]);
+
+                if(dataField!=''&&displayField!=''){
+
+                    if (tag[displayField].length >= $scope.options.minLength && $scope.options.allowedTagsPattern.test(tag[displayField])) {
+
+                        if ($scope.options.replaceSpacesWithDashes) {
+                            tag[displayField] = tag[displayField].replace(/\s/g, '-');
+                        }
+
+                        if ($scope.tags.indexOf(tag[displayField]) === -1) {
+                            $scope.tags.push(tag[displayField]);
+                            $scope.data.push(tag);
+                        }
+
+                        $scope.newTag = '';
+                        changed = true;
+                    }
+                    else
+                    {
+                        console.log('sum wrong with minlength and allowed pattern man');
+                    }
+                    
+                }else if (tag.length >= $scope.options.minLength && $scope.options.allowedTagsPattern.test(tag)) {
 
                     if ($scope.options.replaceSpacesWithDashes) {
                         tag = tag.replace(/\s/g, '-');
@@ -113,11 +141,12 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
                 if ($scope.tags.length > 0) {
                     if ($scope.options.enableEditingLastTag) {
                         $scope.newTag = $scope.tags.pop();
+                        $scope.data.pop();
                     }
                     else {
                         if ($scope.shouldRemoveLastTag) {
                             $scope.tags.pop();
-
+                            $scope.data.pop();
                             $scope.shouldRemoveLastTag = false;
                         }
                         else {
