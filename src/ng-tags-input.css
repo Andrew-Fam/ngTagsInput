@@ -9,10 +9,10 @@
     -webkit-appearance: textfield;
     background-color: white;
     background-color: -moz-field;
-    border: 1px solid darkgray;
-    box-shadow: 1px 1px 1px 0 lightgray inset;
-    margin-top: 5px;
-    padding: 2px 2px;
+    border: none;
+    box-shadow: none;
+    margin-top: 0;
+    padding: 0;
     overflow-y: auto;
     overflow-x: hidden;
     word-wrap: break-word;
@@ -76,8 +76,8 @@
 .ngTagsInput input {
     border: 0px;
     outline: none;
-    margin: 2px;
-    padding: 0px 0px 0px 4px;
+    margin: 0;
+    padding: 0;
     height: 21px;
     float: left;
     font: 13px Arial, sans-serif;
