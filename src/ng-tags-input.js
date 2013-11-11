@@ -53,7 +53,7 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
             addOnEnter: getBool('addOnEnter', true),
             addOnSpace: getBool('addOnSpace', false),
             addOnComma: getBool('addOnComma', true),
-            allowedTagsPattern: new RegExp(getStr('allowedTagsPattern', '^[a-zA-Z0-9\\s]+$')),
+            allowedTagsPattern: new RegExp(getStr('allowedTagsPattern', '^[a-zA-Z0-9\\s/\\\\ ]+$')),
             enableEditingLastTag: getBool('enableEditingLastTag', false)
         };
     }
@@ -62,7 +62,7 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
         restrict: 'A,E',
         scope: { 
             tags: '=ngModel',
-            source: '@tags-input-source'    
+            typeAheadSource:'&tagsInputSource',    
         },
         replace: false,
         template: '<div class="ngTagsInput {{ options.cssClass }}">' +
@@ -72,14 +72,18 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
                   '      <button type="button" ng-click="remove($index)">{{ options.removeTagSymbol }}</button>' +
                   '    </li>' +
                   '  </ul>' +
-                  '  <input type="text" type-ahead="{{options.typeAhead}}" placeholder="{{ options.placeholder }}" size="{{ options.placeholder.length }}" maxlength="{{ options.maxLength }}" tabindex="{{ options.tabindex }}" ng-model="newTag">' +
+                  '  <input type="text" typeahead="{{options.typeAhead}}" placeholder="{{ options.placeholder }}" size="{{ options.placeholder.length }}" maxlength="{{ options.maxLength }}" tabindex="{{ options.tabindex }}" ng-model="newTag">' +
                   '</div>',
         controller: function($scope, $attrs) {
             loadOptions($scope, $attrs);
 
             $scope.newTag = '';
             $scope.tags = $scope.tags || [];
-
+            
+            $scope.$watch($scope.typeAheadSource, function () {
+                $scope.source = angular.fromJson($scope.typeAheadSource());
+                console.log(angular.fromJson($scope.typeAheadSource()));
+            });
             $scope.tryAdd = function() {
                 var changed = false;
                 var tag = $scope.newTag;
@@ -96,6 +100,10 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
 
                     $scope.newTag = '';
                     changed = true;
+                }
+                else
+                {
+                    console.log('sum wrong with minlength and allowed pattern man');
                 }
                 return changed;
             };
