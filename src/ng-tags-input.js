@@ -60,7 +60,10 @@ angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($
 
     return {
         restrict: 'A,E',
-        scope: { tags: '=ngModel' },
+        scope: { 
+            tags: '=ngModel',
+            source: '@tags-input-source'    
+        },
         replace: false,
         template: '<div class="ngTagsInput {{ options.cssClass }}">' +
                   '  <ul>' +
