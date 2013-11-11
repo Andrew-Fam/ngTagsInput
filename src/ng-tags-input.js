@@ -25,7 +25,7 @@
  *                                             is pressed and the input box is empty.
  */
 
-angular.module('tags-input', []).directive('tagsInput', function($interpolate) {
+angular.module('tags-input', ['ui.bootstrap']).directive('tagsInput', function($interpolate) {
     function loadOptions(scope, attrs) {
         function getStr(name, defaultValue) {
             return attrs[name] ? $interpolate(attrs[name])(scope.$parent) : defaultValue;
@@ -42,6 +42,7 @@ angular.module('tags-input', []).directive('tagsInput', function($interpolate) {
         }
 
         scope.options = {
+            typeAhead: getStr('tagsInputTypeAhead', ''),
             cssClass: getStr('ngClass', ''),
             placeholder: getStr('placeholder', 'Add a tag'),
             tabindex: getInt('tabindex', ''),
@@ -68,7 +69,7 @@ angular.module('tags-input', []).directive('tagsInput', function($interpolate) {
                   '      <button type="button" ng-click="remove($index)">{{ options.removeTagSymbol }}</button>' +
                   '    </li>' +
                   '  </ul>' +
-                  '  <input type="text" placeholder="{{ options.placeholder }}" size="{{ options.placeholder.length }}" maxlength="{{ options.maxLength }}" tabindex="{{ options.tabindex }}" ng-model="newTag">' +
+                  '  <input type="text" type-ahead="{{options.typeAhead}}" placeholder="{{ options.placeholder }}" size="{{ options.placeholder.length }}" maxlength="{{ options.maxLength }}" tabindex="{{ options.tabindex }}" ng-model="newTag">' +
                   '</div>',
         controller: function($scope, $attrs) {
             loadOptions($scope, $attrs);
